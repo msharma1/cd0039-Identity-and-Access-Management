@@ -59,18 +59,23 @@ The `--reload` flag will detect file changes and restart the server automaticall
    - in API Settings:
      - Enable RBAC
      - Enable Add Permissions in the Access Token
+     ![alt text](image.png)
 5. Create new API permissions:
    - `get:drinks`
    - `get:drinks-detail`
    - `post:drinks`
    - `patch:drinks`
    - `delete:drinks`
+   ![alt text](image-1.png)
 6. Create new roles for:
    - Barista
      - can `get:drinks-detail`
      - can `get:drinks`
+     ![alt text](image-2.png)
    - Manager
      - can perform all actions
+     ![alt text](image-3.png)
+     ![alt text](image-4.png)
 7. Test your endpoints with [Postman](https://getpostman.com).
    - Register 2 users - assign the Barista role to one and Manager role to the other.
    - Sign into each account and make note of the JWT.
