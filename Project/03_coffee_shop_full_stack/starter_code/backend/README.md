@@ -1,4 +1,4 @@
-# Coffee Shop Backend
+<img width="1220" alt="image" src="https://github.com/user-attachments/assets/975ae2b8-5111-4562-a01e-6eed1a4aa251" /># Coffee Shop Backend
 
 ## Getting Started
 
@@ -86,7 +86,6 @@ The `--reload` flag will detect file changes and restart the server automaticall
 Barista User - 
 <img width="1304" alt="image" src="https://github.com/user-attachments/assets/ad5e5542-c69a-4889-a772-2aab71ed6dd9" />
 
-
 Manager User - 
 <img width="1408" alt="image" src="https://github.com/user-attachments/assets/f3472320-e831-46ac-a39c-bfedc45e957f" />
 <img width="1279" alt="image" src="https://github.com/user-attachments/assets/af3f9e8d-66dc-4bca-a206-916c27491b93" />
@@ -96,9 +95,23 @@ Manager User -
 
    - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
    - Run the collection and correct any errors.
+     
+**Barista** user is able to access the GET endpoints - 
+GET /drinks
+<img width="1274" alt="image" src="https://github.com/user-attachments/assets/11a2bb46-c7f1-4435-a1c0-9e1fdff38da4" />
+GET /drinks-detail
+<img width="1223" alt="image" src="https://github.com/user-attachments/assets/6c87cf2f-ae7c-4355-8c1b-5d5513224389" />
+
+But **Barista** user is NOT able to get POST, PATCH, and DELETE endpoints - 
+POST /drinks
+<img width="1220" alt="image" src="https://github.com/user-attachments/assets/5a97302c-c82e-4e4e-9356-a73082beec28" />
+PATCH /drinks/1
+<img width="1265" alt="image" src="https://github.com/user-attachments/assets/e24d0066-fcd1-4d2f-a242-171d19f782cc" />
+DELETE /drinks/1
+<img width="1264" alt="image" src="https://github.com/user-attachments/assets/59d35974-5ada-422d-a2ef-62205a0a9fe4" />
 
      
-Manager user is able to access the endpoints - 
+**Manager** user is able to access the endpoints - 
 GET /drinks
 <img width="1275" alt="image" src="https://github.com/user-attachments/assets/391b1ab0-40a8-454c-998c-5cee95e849d5" />
 GET /drinks-detail
