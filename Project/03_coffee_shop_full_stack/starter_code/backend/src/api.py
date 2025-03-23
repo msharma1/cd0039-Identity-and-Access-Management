@@ -31,13 +31,27 @@ db_drop_and_create_all()
 @app.route('/drinks', methods=['GET'])
 def get_drinks():
     try:
+        print("GET /drinks endpoint hit")
         drinks = Drink.query.all()
+        print(f"Retrieved {len(drinks)} drinks from database")
         
+        drink_list = []
+        for drink in drinks:
+            try:
+                short_rep = drink.short()
+                drink_list.append(short_rep)
+                print(f"Added drink: {drink.title}")
+            except Exception as e:
+                print(f"Error processing drink {drink.id}: {str(e)}")
+                
         return jsonify({
             'success': True,
-            'drinks': [drink.short() for drink in drinks]
-        }), 200
+            'drinks': drink_list
+        })
     except Exception as e:
+        print(f"Error in get_drinks: {str(e)}")
+        import traceback
+        traceback.print_exc()
         abort(500)
 
 
