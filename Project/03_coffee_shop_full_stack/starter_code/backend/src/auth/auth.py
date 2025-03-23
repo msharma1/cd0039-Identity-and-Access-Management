@@ -7,8 +7,8 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'dev-vaa4tqxczeu26tio.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'dev'
-
+API_AUDIENCE = 'coffee-shop'
+ 
 ## AuthError Exception
 '''
 AuthError Exception
@@ -22,50 +22,34 @@ class AuthError(Exception):
 
 ## Auth Header
 
-'''
-@TODO implement get_token_auth_header() method
-    it should attempt to get the header from the request
-        it should raise an AuthError if no header is present
-    it should attempt to split bearer and the token
-        it should raise an AuthError if the header is malformed
-    return the token part of the header
-'''
 def get_token_auth_header():
-    # Get auth header from request
-    auth_header = request.headers.get('Authorization', None)
     
-    # Raise error if no header is present
-    if not auth_header:
+    auth = request.headers.get('Authorization', None)
+    if not auth:
         raise AuthError({
             'code': 'authorization_header_missing',
             'description': 'Authorization header is expected.'
         }, 401)
-    
-    # Split header parts
-    parts = auth_header.split()
-    
-    # Check if header has 'Bearer' format
+
+    parts = auth.split()
     if parts[0].lower() != 'bearer':
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Authorization header must start with "Bearer".'
         }, 401)
-    
-    # Check if token is present
-    if len(parts) == 1:
+
+    elif len(parts) == 1:
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Token not found.'
         }, 401)
-    
-    # Check if header has more than 2 parts
-    if len(parts) > 2:
+
+    elif len(parts) > 2:
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Authorization header must be bearer token.'
         }, 401)
-    
-    # Return token part
+
     token = parts[1]
     return token
 
@@ -80,21 +64,19 @@ def get_token_auth_header():
     it should raise an AuthError if the requested permission string is not in the payload permissions array
     return true otherwise
 '''
+
 def check_permissions(permission, payload):
-    # Check if permissions are included in payload
     if 'permissions' not in payload:
         raise AuthError({
             'code': 'invalid_claims',
             'description': 'Permissions not included in JWT.'
         }, 400)
-    
-    # Check if the requested permission is in the permissions array
-    if permission != '' and permission not in payload['permissions']:
+
+    if permission not in payload['permissions']:
         raise AuthError({
             'code': 'unauthorized',
             'description': 'Permission not found.'
         }, 403)
-    
     return True
 
 '''
@@ -111,14 +93,9 @@ def check_permissions(permission, payload):
     !!NOTE urlopen has a common certificate error described here: https://stackoverflow.com/questions/50236117/scraping-ssl-certificate-verify-failed-error-for-http-en-wikipedia-org
 '''
 def verify_decode_jwt(token):
-    # Get public key from Auth0
     jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
-    
-    # Get data from token header
     unverified_header = jwt.get_unverified_header(token)
-    
-    # Choose key
     rsa_key = {}
     if 'kid' not in unverified_header:
         raise AuthError({
@@ -135,11 +112,8 @@ def verify_decode_jwt(token):
                 'n': key['n'],
                 'e': key['e']
             }
-    
-    # Verify token
     if rsa_key:
         try:
-            # Validate the token using the rsa_key
             payload = jwt.decode(
                 token,
                 rsa_key,
@@ -161,17 +135,15 @@ def verify_decode_jwt(token):
                 'code': 'invalid_claims',
                 'description': 'Incorrect claims. Please, check the audience and issuer.'
             }, 401)
-        
         except Exception:
             raise AuthError({
-                'code': 'invalid_token',
+                'code': 'invalid_header',
                 'description': 'Unable to parse authentication token.'
             }, 400)
-    
     raise AuthError({
-        'code': 'invalid_header',
-        'description': 'Unable to find the appropriate key.'
-    }, 400)
+                'code': 'invalid_header',
+                'description': 'Unable to find the appropriate key.'
+            }, 400)
 
 '''
 @TODO implement @requires_auth(permission) decorator method
@@ -191,5 +163,6 @@ def requires_auth(permission=''):
             payload = verify_decode_jwt(token)
             check_permissions(permission, payload)
             return f(payload, *args, **kwargs)
+
         return wrapper
     return requires_auth_decorator

@@ -53,8 +53,7 @@ def get_drinks():
 @requires_auth('get:drinks-detail')
 def get_drinks_detail(payload):
     try:
-        drinks = Drink.query.all()
-        
+        drinks = Drink.query.all()        
         return jsonify({
             'success': True,
             'drinks': [drink.long() for drink in drinks]
