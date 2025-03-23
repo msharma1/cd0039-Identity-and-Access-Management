@@ -82,7 +82,13 @@ The `--reload` flag will detect file changes and restart the server automaticall
    ![alt text](image-6.png)
    ![alt text](image-7.png)
    - Sign into each account and make note of the JWT.
-     <img width="1408" alt="image" src="https://github.com/user-attachments/assets/f3472320-e831-46ac-a39c-bfedc45e957f" />
+
+Barista User - 
+<img width="1304" alt="image" src="https://github.com/user-attachments/assets/ad5e5542-c69a-4889-a772-2aab71ed6dd9" />
+
+
+Manager User - 
+<img width="1408" alt="image" src="https://github.com/user-attachments/assets/f3472320-e831-46ac-a39c-bfedc45e957f" />
 <img width="1279" alt="image" src="https://github.com/user-attachments/assets/af3f9e8d-66dc-4bca-a206-916c27491b93" />
 
    - Import the postman collection `./starter_code/backend/udacity-fsnd-udaspicelatte.postman_collection.json`
