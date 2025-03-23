@@ -89,13 +89,21 @@ The `--reload` flag will detect file changes and restart the server automaticall
      <img width="1249" alt="image" src="https://github.com/user-attachments/assets/92e7577b-b08e-4cae-bb66-160a44ed30be" />
 
    - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
+   - Run the collection and correct any errors.
+
      
 Manager user is able to access the endpoints - 
-![Uploading image.png…]()
+GET /drinks
+<img width="1275" alt="image" src="https://github.com/user-attachments/assets/391b1ab0-40a8-454c-998c-5cee95e849d5" />
+GET /drinks-detail
+<img width="1267" alt="image" src="https://github.com/user-attachments/assets/cbb39fc2-87d6-44dd-8613-16d55586ea0c" />
+POST /drinks
+<img width="1223" alt="image" src="https://github.com/user-attachments/assets/602904e4-75b9-4c17-a1e0-90bddf59cb17" />
+PATCH /drinks/1
+<img width="1205" alt="image" src="https://github.com/user-attachments/assets/60949174-fbf4-4678-b6b5-7a7ceab6e6aa" />
+DELETE /drinks/1
+<img width="1225" alt="image" src="https://github.com/user-attachments/assets/e5867104-6e22-46fa-86eb-ca519e4d9ec2" />
 
-
-
-   - Run the collection and correct any errors.
    - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
 
 ### Implement The Server
