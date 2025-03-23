@@ -82,8 +82,19 @@ The `--reload` flag will detect file changes and restart the server automaticall
    ![alt text](image-6.png)
    ![alt text](image-7.png)
    - Sign into each account and make note of the JWT.
+     <img width="1408" alt="image" src="https://github.com/user-attachments/assets/f3472320-e831-46ac-a39c-bfedc45e957f" />
+<img width="1279" alt="image" src="https://github.com/user-attachments/assets/af3f9e8d-66dc-4bca-a206-916c27491b93" />
+
    - Import the postman collection `./starter_code/backend/udacity-fsnd-udaspicelatte.postman_collection.json`
+     <img width="1249" alt="image" src="https://github.com/user-attachments/assets/92e7577b-b08e-4cae-bb66-160a44ed30be" />
+
    - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
+     
+Manager user is able to access the endpoints - 
+![Uploading image.png…]()
+
+
+
    - Run the collection and correct any errors.
    - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
 
